@@ -1,0 +1,23 @@
+extends ../layouts/base.pug
+
+block append style
+  style(type='text/css').
+    //
+
+block content
+  section
+    h2 周报快速生成
+  section
+    h3 微信号替换
+    div
+      span(data-wx="") 微信号
+  section
+    h3 二维码替换
+    div: img(src="blank.png", alt="二维码", data-qrcode="")
+
+//- block append script
+//-   script(src='/static/magic.js')
+//-   script.
+//-     $('img[data-qrcode]').each(function(_, item) {
+//-       $('<span>').text('src:' + $(item).attr('src')).appendTo($(item).parent());
+//-     });

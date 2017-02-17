@@ -1,0 +1,40 @@
+{
+  "name": "bigbang-web",
+  "version": "1.0.0",
+  "scripts": {
+    "prestart": "rm -rf ./dist",
+    "start": "NODE_ENV=development nodemon --watch src --watch app.js ./app.js",
+    "build": "NODE_ENV=production node ./server.js"
+  },
+  "description": "bigbang on web",
+  "main": "index.js",
+  "author": "lixi",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.5.4",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "html-webpack-plugin": "^2.24.1",
+    "node-sass": "^4.0.0",
+    "nodemon": "^1.11.0",
+    "postcss-loader": "^1.2.1",
+    "sass-loader": "^4.1.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.2.1",
+    "webpack-hot-middleware": "^2.13.2",
+    "webpack-middleware": "^1.5.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "express": "^4.14.0",
+    "material-ui": "^0.17.0",
+    "next": "beta",
+    "pug": "^2.0.0-beta11",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "^2.0.1"
+  }
+}
