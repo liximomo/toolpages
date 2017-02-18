@@ -1,14 +1,22 @@
-import Row from './Row';
+import WeekTable from './WeekTable';
+import { monday, friday }from '../../../utils/date';
 
-const tableStyle = {
-  borderCollapse: 'collapse',
-};
+function toMonthDay(moment) {
+  return moment.format('YYYY/MM/DD');
+}
 
-export default class WeekTable extends React.Component {
+function weekSpan(offset = 0) {
+ return [monday(offset * 7), friday(offset * 7)].map(toMonthDay).join('-');
+}
+
+export default class WeekReport extends React.Component {
   constructor(props, context) {
     super(props, context);
+    this.curWeekTitle = weekSpan();
+    this.nextWeekTitle = weekSpan(1);
 
     this.curWeek = [{
+      id: '1',
       department: 'test', // 责任部门
       event: 'test', // 涉及事项
       priority: 'test', // 象限
@@ -21,6 +29,7 @@ export default class WeekTable extends React.Component {
       relation: 'test', // 第三方/协助方
       obstacle: 'test', // 疑问/难点/关键点
     }, {
+      id: '2',
       department: 'test1', // 责任部门
       event: 'test1', // 涉及事项
       priority: 'test1', // 象限
@@ -35,14 +44,8 @@ export default class WeekTable extends React.Component {
     }];
   }
 
-  colDefinition() {
-    return (
-      <colgroup>
-        {this.props.columns.map(column =>
-          <col width="200"/>
-        )}
-      </colgroup>
-    );
+  title() {
+    return ''
   }
 
   render() {
@@ -53,20 +56,8 @@ export default class WeekTable extends React.Component {
     } = this.props;
     return (
       <div>
-        <h4>{title}</h4>
-        <table
-          border="0"
-          cellpadding="0"
-          cellspacing="0"
-          style={tableStyle}
-        >
-          {this.colDefinition()}
-          <tbody>
-            {curWeek.map(eventEntry =>
-              <Row {...eventEntry} />
-            )}
-          </tbody>
-        </table>
+        <WeekTable title={this.curWeekTitle} cols={this.props.columns} data={this.curWeek} />
+        <WeekTable title={this.nextWeekTitle} cols={this.props.columns} data={this.curWeek} />
       </div>
     );
   }

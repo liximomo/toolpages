@@ -51,8 +51,6 @@ var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
 var _normal = require('../theme/normal');
 
-var _normal2 = _interopRequireDefault(_normal);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/hoc/global.js';
@@ -112,7 +110,7 @@ function injectGlobal(WrappedComponent, getInitProps) {
 
                 case 8:
                   return _context.abrupt('return', (0, _extends3.default)({}, props, {
-                    theme: (0, _normal2.default)(userAgent)
+                    theme: (0, _normal.createTheme)(userAgent)
                   }));
 
                 case 9:

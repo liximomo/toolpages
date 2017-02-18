@@ -14,7 +14,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/components/WeekTable/Row.js';
+var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pageComponents/weeklyReport/WeekReport/Row.js';
 
 var normalTdStyle = {
   padding: '10px 12px',

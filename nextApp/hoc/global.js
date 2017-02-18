@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import createTheme from '../theme/normal';
+import { createTheme } from '../theme/normal';
 
 export default function injectGlobal(WrappedComponent, getInitProps, withRef = false) {
   return class GlobalComponent extends React.Component {

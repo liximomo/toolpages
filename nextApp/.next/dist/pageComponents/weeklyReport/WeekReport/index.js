@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends2 = require('next/node_modules/babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
 var _getPrototypeOf = require('next/node_modules/babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -32,28 +28,40 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Row = require('./Row');
+var _WeekTable = require('./WeekTable');
 
-var _Row2 = _interopRequireDefault(_Row);
+var _WeekTable2 = _interopRequireDefault(_WeekTable);
+
+var _date = require('../../../utils/date');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/components/WeekTable/index.js';
+var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pageComponents/weeklyReport/WeekReport/index.js';
 
 
-var tableStyle = {
-  borderCollapse: 'collapse'
-};
+function toMonthDay(moment) {
+  return moment.format('YYYY/MM/DD');
+}
 
-var WeekTable = function (_React$Component) {
-  (0, _inherits3.default)(WeekTable, _React$Component);
+function weekSpan() {
+  var offset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-  function WeekTable(props, context) {
-    (0, _classCallCheck3.default)(this, WeekTable);
+  return [(0, _date.monday)(offset * 7), (0, _date.friday)(offset * 7)].map(toMonthDay).join('-');
+}
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (WeekTable.__proto__ || (0, _getPrototypeOf2.default)(WeekTable)).call(this, props, context));
+var WeekReport = function (_React$Component) {
+  (0, _inherits3.default)(WeekReport, _React$Component);
+
+  function WeekReport(props, context) {
+    (0, _classCallCheck3.default)(this, WeekReport);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (WeekReport.__proto__ || (0, _getPrototypeOf2.default)(WeekReport)).call(this, props, context));
+
+    _this.curWeekTitle = weekSpan();
+    _this.nextWeekTitle = weekSpan(1);
 
     _this.curWeek = [{
+      id: '1',
       department: 'test', // 责任部门
       event: 'test', // 涉及事项
       priority: 'test', // 象限
@@ -65,6 +73,7 @@ var WeekTable = function (_React$Component) {
       person: 'test', // 责任人
       relation: 'test', // 第三方/协助方
       obstacle: 'test' }, {
+      id: '2',
       department: 'test1', // 责任部门
       event: 'test1', // 涉及事项
       priority: 'test1', // 象限
@@ -79,21 +88,10 @@ var WeekTable = function (_React$Component) {
     return _this;
   }
 
-  (0, _createClass3.default)(WeekTable, [{
-    key: 'colDefinition',
-    value: function colDefinition() {
-      return _react2.default.createElement('colgroup', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 40
-        }
-      }, this.props.columns.map(function (column) {
-        return _react2.default.createElement('col', { width: '200', __source: {
-            fileName: _jsxFileName,
-            lineNumber: 42
-          }
-        });
-      }));
+  (0, _createClass3.default)(WeekReport, [{
+    key: 'title',
+    value: function title() {
+      return '';
     }
   }, {
     key: 'render',
@@ -106,41 +104,23 @@ var WeekTable = function (_React$Component) {
       return _react2.default.createElement('div', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 58
         }
-      }, _react2.default.createElement('h4', {
-        __source: {
+      }, _react2.default.createElement(_WeekTable2.default, { title: this.curWeekTitle, cols: this.props.columns, data: this.curWeek, __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 59
         }
-      }, title), _react2.default.createElement('table', {
-        border: '0',
-        cellpadding: '0',
-        cellspacing: '0',
-        style: tableStyle,
-        __source: {
+      }), _react2.default.createElement(_WeekTable2.default, { title: this.nextWeekTitle, cols: this.props.columns, data: this.curWeek, __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 60
         }
-      }, this.colDefinition(), _react2.default.createElement('tbody', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 64
-        }
-      }, curWeek.map(function (eventEntry) {
-        return _react2.default.createElement(_Row2.default, (0, _extends3.default)({}, eventEntry, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 66
-          }
-        }));
-      }))));
+      }));
     }
   }]);
 
-  return WeekTable;
+  return WeekReport;
 }(_react2.default.Component);
 
-exports.default = WeekTable;
+exports.default = WeekReport;
 
 ;
