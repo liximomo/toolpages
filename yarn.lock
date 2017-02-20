@@ -2174,6 +2174,10 @@ forever-agent@~0.6.1:
   version "0.6.1"
   resolved "http://registry.npm.taobao.org/forever-agent/download/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
 
+form-data-to-object@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/form-data-to-object/-/form-data-to-object-0.2.0.tgz#f7a8e68ddd910a1100a65e25ac6a484143ff8168"
+
 form-data@~2.1.1:
   version "2.1.2"
   resolved "http://registry.npm.taobao.org/form-data/download/form-data-2.1.2.tgz#89c3534008b97eada4cbb157d58f6f5df025eae4"
@@ -2181,6 +2185,18 @@ form-data@~2.1.1:
     asynckit "^0.4.0"
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
+
+formsy-material-ui:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/formsy-material-ui/-/formsy-material-ui-0.5.5.tgz#7804d6ba2738e52729a6e90397e1233a2f3e784c"
+  dependencies:
+    keycode "^2.1.0"
+
+formsy-react:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/formsy-react/-/formsy-react-0.19.2.tgz#7fa818ff93c8c07195486c4d2e42b6da0c0ee4a3"
+  dependencies:
+    form-data-to-object "^0.2.0"
 
 forwarded@~0.1.0:
   version "0.1.0"
@@ -2921,7 +2937,7 @@ jstransformer@1.0.0:
     is-promise "^2.0.0"
     promise "^7.0.1"
 
-keycode@^2.1.1:
+keycode@^2.1.0, keycode@^2.1.1:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.8.tgz#94d2b7098215eff0e8f9a8931d5a59076c4532fb"
 
@@ -5095,13 +5111,13 @@ utils-merge@1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/utils-merge/download/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
+uuid, uuid@^3.0.0, uuid@3.0.1:
+  version "3.0.1"
+  resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+
 uuid@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
-
-uuid@^3.0.0, uuid@3.0.1:
-  version "3.0.1"
-  resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"

@@ -6,7 +6,7 @@ const path = require('path');
 const dev = process.env.NODE_ENV !== 'production'
 const appConfig = require('./app.cfg');
 
-const port = 8080;
+const port = 10008;
 const viewPath = path.join(appConfig.PROJECT_PATH, './views');
 const staticPath = path.join(appConfig.PROJECT_PATH, './assets');
 const nextDir = path.join(appConfig.PROJECT_PATH, './nextApp');

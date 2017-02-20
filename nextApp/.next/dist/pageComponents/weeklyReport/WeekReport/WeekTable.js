@@ -26,47 +26,63 @@ var tableStyle = {
 };
 
 var colDefinition = function colDefinition(columns) {
-  return _react2.default.createElement('colgroup', {
+  return _react2.default.createElement('thead', {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 9
     }
-  }, columns.map(function (column, index) {
-    return _react2.default.createElement('col', { key: index, width: '200', __source: {
+  }, _react2.default.createElement('tr', {
+    style: {
+      backgroundColor: 'silver'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    }
+  }, columns.map(function (column) {
+    return _react2.default.createElement('td', {
+      key: column.name,
+      style: (0, _extends3.default)({
+        border: '1px solid',
+        padding: '10px 12px',
+        textAlign: 'center',
+        verticalAlign: 'middle'
+      }, column.style || {}),
+      __source: {
         fileName: _jsxFileName,
-        lineNumber: 11
+        lineNumber: 16
       }
-    });
-  }));
+    }, column.text);
+  })));
 };
 
 var WeekTable = function WeekTable(props) {
   return _react2.default.createElement('div', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 36
     }
   }, _react2.default.createElement('h4', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 37
     }
   }, props.title), _react2.default.createElement('table', {
     style: tableStyle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 38
     }
   }, colDefinition(props.cols), _react2.default.createElement('tbody', {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 42
     }
   }, props.data.map(function (eventEntry) {
     return _react2.default.createElement(_Row2.default, (0, _extends3.default)({ key: eventEntry.id }, eventEntry, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 44
       }
     }));
   }))));

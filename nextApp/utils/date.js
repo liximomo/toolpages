@@ -7,3 +7,7 @@ export function monday(offset = 0) {
 export function friday(offset = 0) {
   return moment().isoWeekday(5 + offset);
 }
+
+export function format(date, formatStr) {
+  return moment(date).format(formatStr);
+}

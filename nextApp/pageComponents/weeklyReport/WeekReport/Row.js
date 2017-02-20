@@ -1,3 +1,5 @@
+import { format }from '../../../utils/date';
+
 const normalTdStyle = {
   padding: '10px 12px',
   textAlign: 'center',
@@ -33,17 +35,17 @@ export default (props) => {
   } = props;
   return (
     <tr>
-      <Cell>{department}</Cell>
-      <Cell>{event}</Cell>
-      <Cell>{priority}</Cell>
-      <Cell>{person}</Cell>
-      <Cell>{relation}</Cell>
-      <Cell>{expectState}</Cell>
-      <Cell>{currentState}</Cell>
-      <Cell>{nextState}</Cell>
-      <Cell>{obstacle}</Cell>
-      <Cell>{expectDate}</Cell>
-      <Cell>{descripe}</Cell>
+      <Cell>{department || ' '}</Cell>
+      <Cell>{event || ' '}</Cell>
+      <Cell>{priority || ' '}</Cell>
+      <Cell>{person || ' '}</Cell>
+      <Cell>{relation || ' '}</Cell>
+      <Cell>{format(expectDate, 'YYYY-MM-DD') || ' '}</Cell>
+      <Cell>{expectState || ' '}</Cell>
+      <Cell>{obstacle || ' '}</Cell>
+      <Cell>{descripe || ' '}</Cell>
+      <Cell>{currentState || ' '}</Cell>
+      <Cell>{nextState || ' '}</Cell>
     </tr>
   );
 };

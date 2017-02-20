@@ -6,11 +6,28 @@ const tableStyle = {
 
 const colDefinition = (columns) => {
   return (
-    <colgroup>
-      {columns.map((column, index) =>
-        <col key={index} width="200"/>
-      )}
-    </colgroup>
+    <thead>
+      <tr
+        style={{
+          backgroundColor: 'silver'
+        }}
+      >
+        {columns.map(column =>
+          <td
+            key={column.name}
+            style={{
+              border: '1px solid',
+              padding: '10px 12px',
+              textAlign: 'center',
+              verticalAlign: 'middle',
+              ...(column.style || {})
+            }}
+          >
+            {column.text}
+          </td>
+        )}
+      </tr>
+    </thead>
   );
 }
 

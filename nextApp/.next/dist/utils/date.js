@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.monday = monday;
 exports.friday = friday;
+exports.format = format;
 
 var _moment = require('moment');
 
@@ -22,4 +23,8 @@ function friday() {
   var offset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
   return (0, _moment2.default)().isoWeekday(5 + offset);
+}
+
+function format(date, formatStr) {
+  return (0, _moment2.default)(date).format(formatStr);
 }

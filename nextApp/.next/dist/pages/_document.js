@@ -76,20 +76,20 @@ var MyDocument = function (_Document) {
           fileName: _jsxFileName,
           lineNumber: 23
         }
-      }, 'html, body {\n              margin: 0;\n              padding: 0;\n            }')), _react2.default.createElement('body', {
+      }, 'html, body {\n              margin: 0;\n              padding: 0;\n            }\n            *, *:before, *:after {\n              box-sizing: inherit;\n            }\n            ::-webkit-scrollbar {\n              height: 10px;\n              width: 10px;\n              overflow: visible; }\n\n            ::-webkit-scrollbar-button {\n              height: 0;\n              width: 0; }\n\n            ::-webkit-scrollbar-track {\n              background-clip: padding-box;\n              border: solid transparent;\n              border-width: 0; }\n\n            ::-webkit-scrollbar-track:horizontal {\n              border-width: 0; }\n\n            ::-webkit-scrollbar-thumb {\n              border-radius: 10px;\n              background-color: rgba(0, 0, 0, 0.2);\n              min-height: 28px;\n              padding: 20px 0 0;\n              box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }\n\n            ::-webkit-scrollbar-thumb:hover {\n              background-color: rgba(0, 0, 0, 0.4);\n              box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25); }\n\n            ::-webkit-scrollbar-thumb:horizontal {\n              border-width: 6px 1px 1px;\n              padding: 0 0 0 100px;\n              box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.07); }\n\n            ::-webkit-scrollbar-corner {\n              background: transparent; }\n            ')), _react2.default.createElement('body', {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 30
+          lineNumber: 69
         }
       }, _react2.default.createElement(_document.Main, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 70
         }
       }), _react2.default.createElement(_document.NextScript, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 32
+          lineNumber: 71
         }
       })));
     }

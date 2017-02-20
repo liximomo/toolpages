@@ -49,6 +49,20 @@ function weekSpan() {
   return [(0, _date.monday)(offset * 7), (0, _date.friday)(offset * 7)].map(toMonthDay).join('-');
 }
 
+var demo = [{
+  id: '@demo',
+  department: '示例', // 责任部门1
+  event: '示例', // 涉及事项1
+  priority: '示例', // 象限1
+  descripe: '示例', // 描述
+  currentState: '示例', // 当前状态
+  nextState: '示例', // 下一个目标
+  expectState: '示例', // 目标状态
+  expectDate: new Date(2017, 0, 8), // 目标时间1
+  person: '示例', // 责任人1
+  relation: '示例', // 第三方/协助方1
+  obstacle: '示例' }];
+
 var WeekReport = function (_React$Component) {
   (0, _inherits3.default)(WeekReport, _React$Component);
 
@@ -57,62 +71,32 @@ var WeekReport = function (_React$Component) {
 
     var _this = (0, _possibleConstructorReturn3.default)(this, (WeekReport.__proto__ || (0, _getPrototypeOf2.default)(WeekReport)).call(this, props, context));
 
-    _this.curWeekTitle = weekSpan();
-    _this.nextWeekTitle = weekSpan(1);
-
-    _this.curWeek = [{
-      id: '1',
-      department: 'test', // 责任部门
-      event: 'test', // 涉及事项
-      priority: 'test', // 象限
-      descripe: 'test', // 描述
-      currentState: 'test', // 当前状态
-      nextState: 'test', // 下一个目标
-      expectState: 'test', // 目标状态
-      expectDate: 'test', // 目标时间
-      person: 'test', // 责任人
-      relation: 'test', // 第三方/协助方
-      obstacle: 'test' }, {
-      id: '2',
-      department: 'test1', // 责任部门
-      event: 'test1', // 涉及事项
-      priority: 'test1', // 象限
-      descripe: 'test1', // 描述
-      currentState: 'test1', // 当前状态
-      nextState: 'test1', // 下一个目标
-      expectState: 'test1', // 目标状态
-      expectDate: 'test1', // 目标时间
-      person: 'test1', // 责任人
-      relation: 'test1', // 第三方/协助方
-      obstacle: 'test1' }];
+    _this.curWeekTitle = '\u672C\u5468\uFF1A' + weekSpan();
+    _this.nextWeekTitle = '\u4E0B\u5468\uFF1A' + weekSpan(1);
     return _this;
   }
 
   (0, _createClass3.default)(WeekReport, [{
-    key: 'title',
-    value: function title() {
-      return '';
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var curWeek = this.curWeek;
       var _props = this.props,
           title = _props.title,
-          columns = _props.columns;
+          columns = _props.columns,
+          curWeek = _props.curWeek,
+          nextWeek = _props.nextWeek,
+          name = _props.name;
 
-      return _react2.default.createElement('div', {
-        __source: {
+      return _react2.default.createElement('div', { name: name, __source: {
           fileName: _jsxFileName,
-          lineNumber: 58
+          lineNumber: 43
         }
-      }, _react2.default.createElement(_WeekTable2.default, { title: this.curWeekTitle, cols: this.props.columns, data: this.curWeek, __source: {
+      }, _react2.default.createElement(_WeekTable2.default, { title: this.curWeekTitle, cols: this.props.columns, data: curWeek.length ? curWeek : demo, __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
+          lineNumber: 44
         }
-      }), _react2.default.createElement(_WeekTable2.default, { title: this.nextWeekTitle, cols: this.props.columns, data: this.curWeek, __source: {
+      }), _react2.default.createElement(_WeekTable2.default, { title: this.nextWeekTitle, cols: this.props.columns, data: nextWeek, __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 45
         }
       }));
     }
