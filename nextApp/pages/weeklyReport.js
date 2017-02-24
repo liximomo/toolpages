@@ -54,67 +54,67 @@ const weekTableColumns = [{
   name: 'department',
   text: '责任部门',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   },
 }, {
   name: 'event',
   text: '涉及事项',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   },
 }, {
   name: 'priority',
   text: '象限',
   style: {
-    minWidth: '3em'
+    minWidth: 3
   },
 }, {
   name: 'person',
   text: '责任人',
   style: {
-    minWidth: '3em'
+    minWidth: 3
   },
 }, {
   name: 'relation',
   text: '第三方/协助方',
   style: {
-    minWidth: '7em'
+    minWidth: 7
   },
 }, {
   name: 'expectDate',
   text: '目标时间',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   },
 }, {
   name: 'expectState',
   text: '目标状态',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   },
 }, {
   name: 'obstacle',
   text: '疑问/难点/关键点',
   style: {
-    minWidth: '10em'
+    minWidth: 10
   },
 }, {
   name: 'descripe',
   text: '描述',
   style: {
-    minWidth: '3em'
+    minWidth: 3
   },
 }, {
   name: 'currentState',
   text: '当前状态',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   },
 }, {
   name: 'nextState',
   text: '跟进事项/状态',
   style: {
-    minWidth: '8em'
+    minWidth: 8
   },
 }];
 

@@ -94,9 +94,6 @@ require('../components/tab_events');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pages/weeklyReport.js?entry';
-
-
 var styles = {
   headStyle: {
     position: 'relative',
@@ -133,67 +130,67 @@ var weekTableColumns = [{
   name: 'department',
   text: '责任部门',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   }
 }, {
   name: 'event',
   text: '涉及事项',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   }
 }, {
   name: 'priority',
   text: '象限',
   style: {
-    minWidth: '3em'
+    minWidth: 3
   }
 }, {
   name: 'person',
   text: '责任人',
   style: {
-    minWidth: '3em'
+    minWidth: 3
   }
 }, {
   name: 'relation',
   text: '第三方/协助方',
   style: {
-    minWidth: '7em'
+    minWidth: 7
   }
 }, {
   name: 'expectDate',
   text: '目标时间',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   }
 }, {
   name: 'expectState',
   text: '目标状态',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   }
 }, {
   name: 'obstacle',
   text: '疑问/难点/关键点',
   style: {
-    minWidth: '10em'
+    minWidth: 10
   }
 }, {
   name: 'descripe',
   text: '描述',
   style: {
-    minWidth: '3em'
+    minWidth: 3
   }
 }, {
   name: 'currentState',
   text: '当前状态',
   style: {
-    minWidth: '5em'
+    minWidth: 5
   }
 }, {
   name: 'nextState',
   text: '跟进事项/状态',
   style: {
-    minWidth: '8em'
+    minWidth: 8
   }
 }];
 
@@ -294,21 +291,13 @@ var WeeklyReport = function (_React$Component) {
         style: {
           overflowX: 'scroll',
           paddingBottom: '1.5em'
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 209
         }
       }, _react2.default.createElement(_WeekReport2.default, {
         name: 'WeekReportRable',
         title: '\u672C\u5468',
         columns: weekTableColumns,
         curWeek: curWeek,
-        nextWeek: nextWeek,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 215
-        }
+        nextWeek: nextWeek
       }));
     }
   }, {
@@ -321,89 +310,34 @@ var WeeklyReport = function (_React$Component) {
           nextWeek = _state2.nextWeek,
           snackBar = _state2.snackBar;
 
-      return _react2.default.createElement('div', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 235
-        }
-      }, _react2.default.createElement('div', { style: styles.headStyle, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 236
-        }
-      }, _react2.default.createElement('h1', { style: styles.titleStyle, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 237
-        }
-      }, '\u5468\u62A5\u751F\u6210\u5668'), _react2.default.createElement(_FloatingActionButton2.default, {
+      return _react2.default.createElement('div', null, _react2.default.createElement('div', { style: styles.headStyle }, _react2.default.createElement('h1', { style: styles.titleStyle }, '\u5468\u62A5\u751F\u6210\u5668'), _react2.default.createElement(_FloatingActionButton2.default, {
         disabled: !fabEnable,
         style: styles.fabStyle,
-        onClick: this.handleFabClick,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 238
-        }
-      }, curView === view.INIT ? _react2.default.createElement(_add2.default, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 243
-        }
-      }) : _react2.default.createElement(_done2.default, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 243
-        }
-      }))), _react2.default.createElement('div', { style: styles.content, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 246
-        }
-      }, curView === view.INIT ? this.tablePreview() : _react2.default.createElement(_EventForm2.default, {
+        onClick: this.handleFabClick
+      }, curView === view.INIT ? _react2.default.createElement(_add2.default, null) : _react2.default.createElement(_done2.default, null))), _react2.default.createElement('div', { style: styles.content }, curView === view.INIT ? this.tablePreview() : _react2.default.createElement(_EventForm2.default, {
         ref: 'eventForm',
         onValid: this.formValid,
         onInValid: this.formInValid,
-        onSubmit: this.handleFormSubmit,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 249
-        }
+        onSubmit: this.handleFormSubmit
       }), _react2.default.createElement('div', {
         style: {
           display: curView === view.INIT ? 'block' : 'none',
           margin: '1.2em 0',
           textAlign: 'right'
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 256
         }
       }, _react2.default.createElement(_IconButton2.default, {
         disableTouchRipple: true,
         tooltip: '\u590D\u5236\u540E\u76F4\u63A5\u5728\u90AE\u7BB1\u7F16\u8F91\u6846\u5185\u6267\u884C\u7C98\u8D34\u64CD\u4F5C\u5373\u53EF\u5C06\u8868\u683C\u5B8C\u6574\u8F93\u51FA',
-        tooltipPosition: 'top-center',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 263
-        }
-      }, _react2.default.createElement(_help2.default, { color: this.context.muiTheme.palette.accent3Color, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 268
-        }
-      })), _react2.default.createElement(_RaisedButton2.default, {
+        tooltipPosition: 'top-center'
+      }, _react2.default.createElement(_help2.default, { color: this.context.muiTheme.palette.accent3Color })), _react2.default.createElement(_RaisedButton2.default, {
         secondary: true,
         label: '\u590D\u5236',
-        onClick: this.copyTable,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 270
-        }
+        onClick: this.copyTable
       }))), _react2.default.createElement(_Snackbar2.default, {
         open: snackBar.open,
         message: snackBar.message || 'null',
         autoHideDuration: 2000,
-        onRequestClose: this.handleRequestClose,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 277
-        }
+        onRequestClose: this.handleRequestClose
       }));
     }
   }]);

@@ -1,5 +1,12 @@
+import CopyToClipboard from 'react-copy-to-clipboard';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import WeekTable from './WeekTable';
 import { monday, friday }from '../../../utils/date';
+
+const LENGTH_RATE = 12;
+const CELL_MAX_WIDTH = 500;
+
 
 function toMonthDay(moment) {
   return moment.format('YYYY/MM/DD');
@@ -24,13 +31,27 @@ const demo = [{
   obstacle: '示例', // 疑问/难点/关键点
 }];
 
+const style = {
+  btn: {
+    height: 24,
+    minWidth: 60,
+    width: 60,
+    // padding: '4px 6px',
+  },
+  btnLabel: {
+    fontSize: 12,
+  }
+};
+
 export default class WeekReport extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.curWeekTitle = `本周：${weekSpan()}`;
     this.nextWeekTitle = `下周：${weekSpan(1)}`;
+    
+    this.columnMaxLength = props.columns.map(col => col.style.minWidth * 16);
   }
-
+  
   render() {
     const {
       title,
@@ -40,9 +61,69 @@ export default class WeekReport extends React.Component {
       name,
     } = this.props;
     return (
-      <div name={name} >
-        <WeekTable title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
-        <WeekTable title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+      <div>
+        <div>
+          <div style={{
+            position: 'relative',
+            right: 0
+          }}>
+            <h4 style={{ textAlign: 'center', marginRight: 10 }} >主题： xx-{weekSpan()}工作周报</h4>
+            <CopyToClipboard text={`xx-${weekSpan()}工作周报`}>
+              <RaisedButton
+                labelStyle={style.btnLabel}
+                style={{
+                  ...style.btn,
+                  position: 'absolute',
+                  right: 30,
+                  top: 0,
+                }}
+                secondary
+                label="复制"
+              />
+            </CopyToClipboard>
+          </div>
+          <div
+            style={{
+              fontSize: 12,
+            }}
+          >
+            <div
+              style={{
+                marginBottom: 12,
+              }}
+            >
+              <span style={{ marginRight: 10 }} >收件人：lanyi-tech-list@mufengcm.com</span>
+              <CopyToClipboard text={'lanyi-tech-list@mufengcm.com'}>
+                <RaisedButton
+                  labelStyle={style.btnLabel}
+                  style={{
+                    ...style.btn,
+                  }}
+                  secondary
+                  label="复制"
+                />
+              </CopyToClipboard>
+            </div>
+            
+            <div>
+              <span style={{ marginRight: 10 }} >抄送：chenbin@mufengcm.com</span>
+              <CopyToClipboard text={'chenbin@mufengcm.com'}>
+                <RaisedButton
+                  labelStyle={style.btnLabel}
+                  style={{
+                    ...style.btn,
+                  }}
+                  secondary
+                  label="复制"
+                />
+              </CopyToClipboard>
+            </div>
+          </div>
+        </div>
+        <div name={name} >
+          <WeekTable widthMatrix={this.columnMaxLength} title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
+          <WeekTable widthMatrix={this.columnMaxLength} title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+        </div>
       </div>
     );
   }

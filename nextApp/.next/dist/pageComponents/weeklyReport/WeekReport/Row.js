@@ -12,12 +12,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _date = require('../../../utils/date');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pageComponents/weeklyReport/WeekReport/Row.js';
-
 
 var normalTdStyle = {
   padding: '10px 12px',
@@ -31,86 +26,25 @@ var Cell = function Cell(props) {
     style: (0, _extends3.default)({}, normalTdStyle, {
       width: props.width || 'auto',
       fontSize: props.fontSize || '12px'
-    }),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  }, props.children);
+    })
+  }, '' + props.content);
 };
 
 exports.default = function (props) {
-  var department = props.department,
-      event = props.event,
-      priority = props.priority,
-      descripe = props.descripe,
-      currentState = props.currentState,
-      nextState = props.nextState,
-      expectState = props.expectState,
-      expectDate = props.expectDate,
-      person = props.person,
-      relation = props.relation,
-      obstacle = props.obstacle;
-
-  return _react2.default.createElement('tr', {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 37
-    }
-  }, _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 38
-    }
-  }, department || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 39
-    }
-  }, event || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 40
-    }
-  }, priority || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 41
-    }
-  }, person || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 42
-    }
-  }, relation || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 43
-    }
-  }, (0, _date.format)(expectDate, 'YYYY-MM-DD') || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    }
-  }, expectState || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    }
-  }, obstacle || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    }
-  }, descripe || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    }
-  }, currentState || ' '), _react2.default.createElement(Cell, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 48
-    }
-  }, nextState || ' '));
+  var keys = ['department', // 责任部门
+  'event', // 涉及事项
+  'priority', // 象限
+  'person', // 责任人
+  'relation', // 第三方/协助方
+  'expectDate', // 目标时间
+  'expectState', // 目标状态
+  'obstacle', // 疑问/难点/关键点
+  'descripe', // 描述
+  'currentState', // 当前状态
+  'nextState'];
+  return _react2.default.createElement('tr', null, keys.map(function (key, index) {
+    var cellContent = props[key] || ' ';
+    props.onRenderCell(index, cellContent.length);
+    return _react2.default.createElement(Cell, { key: index, content: cellContent });
+  }));
 };

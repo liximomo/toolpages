@@ -34,7 +34,6 @@ const getAvaliableAdress = () => {
   return ['localhost'].concat(getLocalIpAddress());
 };
 
-
 const nextApp = next({ dev, dir: nextDir });
 const nextHandle = nextApp.getRequestHandler();
 

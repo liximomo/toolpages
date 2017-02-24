@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends2 = require('next/node_modules/babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
 var _getPrototypeOf = require('next/node_modules/babel-runtime/core-js/object/get-prototype-of');
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -28,6 +32,14 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactCopyToClipboard = require('react-copy-to-clipboard');
+
+var _reactCopyToClipboard2 = _interopRequireDefault(_reactCopyToClipboard);
+
+var _RaisedButton = require('material-ui/RaisedButton');
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
 var _WeekTable = require('./WeekTable');
 
 var _WeekTable2 = _interopRequireDefault(_WeekTable);
@@ -36,8 +48,8 @@ var _date = require('../../../utils/date');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pageComponents/weeklyReport/WeekReport/index.js';
-
+var LENGTH_RATE = 12;
+var CELL_MAX_WIDTH = 500;
 
 function toMonthDay(moment) {
   return moment.format('YYYY/MM/DD');
@@ -63,6 +75,17 @@ var demo = [{
   relation: '示例', // 第三方/协助方1
   obstacle: '示例' }];
 
+var style = {
+  btn: {
+    height: 24,
+    minWidth: 60,
+    width: 60
+  },
+  btnLabel: {
+    fontSize: 12
+  }
+};
+
 var WeekReport = function (_React$Component) {
   (0, _inherits3.default)(WeekReport, _React$Component);
 
@@ -73,6 +96,10 @@ var WeekReport = function (_React$Component) {
 
     _this.curWeekTitle = '\u672C\u5468\uFF1A' + weekSpan();
     _this.nextWeekTitle = '\u4E0B\u5468\uFF1A' + weekSpan(1);
+
+    _this.columnMaxLength = props.columns.map(function (col) {
+      return col.style.minWidth * 16;
+    });
     return _this;
   }
 
@@ -86,19 +113,37 @@ var WeekReport = function (_React$Component) {
           nextWeek = _props.nextWeek,
           name = _props.name;
 
-      return _react2.default.createElement('div', { name: name, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 43
+      return _react2.default.createElement('div', null, _react2.default.createElement('div', null, _react2.default.createElement('div', { style: {
+          position: 'relative',
+          right: 0
+        } }, _react2.default.createElement('h4', { style: { textAlign: 'center', marginRight: 10 } }, '\u4E3B\u9898\uFF1A xx-', weekSpan(), '\u5DE5\u4F5C\u5468\u62A5'), _react2.default.createElement(_reactCopyToClipboard2.default, { text: 'xx-' + weekSpan() + '\u5DE5\u4F5C\u5468\u62A5' }, _react2.default.createElement(_RaisedButton2.default, {
+        labelStyle: style.btnLabel,
+        style: (0, _extends3.default)({}, style.btn, {
+          position: 'absolute',
+          right: 30,
+          top: 0
+        }),
+        secondary: true,
+        label: '\u590D\u5236'
+      }))), _react2.default.createElement('div', {
+        style: {
+          fontSize: 12
         }
-      }, _react2.default.createElement(_WeekTable2.default, { title: this.curWeekTitle, cols: this.props.columns, data: curWeek.length ? curWeek : demo, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 44
+      }, _react2.default.createElement('div', {
+        style: {
+          marginBottom: 12
         }
-      }), _react2.default.createElement(_WeekTable2.default, { title: this.nextWeekTitle, cols: this.props.columns, data: nextWeek, __source: {
-          fileName: _jsxFileName,
-          lineNumber: 45
-        }
-      }));
+      }, _react2.default.createElement('span', { style: { marginRight: 10 } }, '\u6536\u4EF6\u4EBA\uFF1Alanyi-tech-list@mufengcm.com'), _react2.default.createElement(_reactCopyToClipboard2.default, { text: 'lanyi-tech-list@mufengcm.com' }, _react2.default.createElement(_RaisedButton2.default, {
+        labelStyle: style.btnLabel,
+        style: (0, _extends3.default)({}, style.btn),
+        secondary: true,
+        label: '\u590D\u5236'
+      }))), _react2.default.createElement('div', null, _react2.default.createElement('span', { style: { marginRight: 10 } }, '\u6284\u9001\uFF1Achenbin@mufengcm.com'), _react2.default.createElement(_reactCopyToClipboard2.default, { text: 'chenbin@mufengcm.com' }, _react2.default.createElement(_RaisedButton2.default, {
+        labelStyle: style.btnLabel,
+        style: (0, _extends3.default)({}, style.btn),
+        secondary: true,
+        label: '\u590D\u5236'
+      }))))), _react2.default.createElement('div', { name: name }, _react2.default.createElement(_WeekTable2.default, { widthMatrix: this.columnMaxLength, title: this.curWeekTitle, cols: this.props.columns, data: curWeek.length ? curWeek : demo }), _react2.default.createElement(_WeekTable2.default, { widthMatrix: this.columnMaxLength, title: this.nextWeekTitle, cols: this.props.columns, data: nextWeek })));
     }
   }]);
 

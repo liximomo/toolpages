@@ -46,9 +46,6 @@ var _document2 = _interopRequireDefault(_document);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pages/_document.js?entry';
-
-
 var MyDocument = function (_Document) {
   (0, _inherits3.default)(MyDocument, _Document);
 
@@ -61,37 +58,7 @@ var MyDocument = function (_Document) {
   (0, _createClass3.default)(MyDocument, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('html', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21
-        }
-      }, _react2.default.createElement(_document.Head, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 22
-        }
-      }, _react2.default.createElement('style', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
-        }
-      }, 'html, body {\n              margin: 0;\n              padding: 0;\n            }\n            *, *:before, *:after {\n              box-sizing: inherit;\n            }\n            ::-webkit-scrollbar {\n              height: 10px;\n              width: 10px;\n              overflow: visible; }\n\n            ::-webkit-scrollbar-button {\n              height: 0;\n              width: 0; }\n\n            ::-webkit-scrollbar-track {\n              background-clip: padding-box;\n              border: solid transparent;\n              border-width: 0; }\n\n            ::-webkit-scrollbar-track:horizontal {\n              border-width: 0; }\n\n            ::-webkit-scrollbar-thumb {\n              border-radius: 10px;\n              background-color: rgba(0, 0, 0, 0.2);\n              min-height: 28px;\n              padding: 20px 0 0;\n              box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }\n\n            ::-webkit-scrollbar-thumb:hover {\n              background-color: rgba(0, 0, 0, 0.4);\n              box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25); }\n\n            ::-webkit-scrollbar-thumb:horizontal {\n              border-width: 6px 1px 1px;\n              padding: 0 0 0 100px;\n              box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.07); }\n\n            ::-webkit-scrollbar-corner {\n              background: transparent; }\n            ')), _react2.default.createElement('body', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 69
-        }
-      }, _react2.default.createElement(_document.Main, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 70
-        }
-      }), _react2.default.createElement(_document.NextScript, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 71
-        }
-      })));
+      return _react2.default.createElement('html', null, _react2.default.createElement(_document.Head, null, _react2.default.createElement('style', null, 'html, body {\n              margin: 0;\n              padding: 0;\n            }\n            *, *:before, *:after {\n              box-sizing: inherit;\n            }\n            ::-webkit-scrollbar {\n              height: 10px;\n              width: 10px;\n              overflow: visible; }\n\n            ::-webkit-scrollbar-button {\n              height: 0;\n              width: 0; }\n\n            ::-webkit-scrollbar-track {\n              background-clip: padding-box;\n              border: solid transparent;\n              border-width: 0; }\n\n            ::-webkit-scrollbar-track:horizontal {\n              border-width: 0; }\n\n            ::-webkit-scrollbar-thumb {\n              border-radius: 10px;\n              background-color: rgba(0, 0, 0, 0.2);\n              min-height: 28px;\n              padding: 20px 0 0;\n              box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }\n\n            ::-webkit-scrollbar-thumb:hover {\n              background-color: rgba(0, 0, 0, 0.4);\n              box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.25); }\n\n            ::-webkit-scrollbar-thumb:horizontal {\n              border-width: 6px 1px 1px;\n              padding: 0 0 0 100px;\n              box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.07); }\n\n            ::-webkit-scrollbar-corner {\n              background: transparent; }\n            ')), _react2.default.createElement('body', null, _react2.default.createElement(_document.Main, null), _react2.default.createElement(_document.NextScript, null)));
     }
   }], [{
     key: 'getInitialProps',

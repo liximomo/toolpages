@@ -53,7 +53,6 @@ var _normal = require('../theme/normal');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/hoc/global.js';
 function injectGlobal(WrappedComponent, getInitProps) {
   var withRef = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
@@ -77,11 +76,7 @@ function injectGlobal(WrappedComponent, getInitProps) {
         } else {
           renderElement = _react2.default.createElement(WrappedComponent, this.props);
         }
-        return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: (0, _getMuiTheme2.default)(this.props.theme), __source: {
-            fileName: _jsxFileName,
-            lineNumber: 39
-          }
-        }, renderElement);
+        return _react2.default.createElement(_MuiThemeProvider2.default, { muiTheme: (0, _getMuiTheme2.default)(this.props.theme) }, renderElement);
       }
     }], [{
       key: 'getInitialProps',

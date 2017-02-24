@@ -14,13 +14,8 @@ class MyPage extends React.Component {
   render () {
     return (
       <div>
-        <h3>添加事项</h3>
-        <div>
-          <TextField
-            hintText="Message Field"
-            floatingLabelText="MultiLine and FloatingLabel"
-          />
-        </div>
+        <h3>Momo</h3>
+        <p>Where are you?</p>
       </div>
     );
   }

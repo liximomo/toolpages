@@ -4,7 +4,7 @@
   "scripts": {
     "prestart": "rm -rf ./dist",
     "start": "NODE_ENV=development nodemon --watch src --watch app.js ./app.js",
-    "serve": "NODE_ENV=production node ./app.js"
+    "serve": "next build nextApp && NODE_ENV=production node ./app.js"
   },
   "description": "bigbang on web",
   "main": "index.js",
@@ -37,6 +37,7 @@
     "next": "beta",
     "pug": "^2.0.0-beta11",
     "react": "^15.4.2",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1",
     "uuid": "^3.0.1"

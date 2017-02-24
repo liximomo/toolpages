@@ -38,9 +38,6 @@ var _TextField2 = _interopRequireDefault(_TextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/mymomo/workspace/github/backend-present/nextApp/pages/index.js?entry';
-
-
 // async function getInitialProps() {
 //   // eslint-disable-next-line no-undef
 //   const res = await fetch('https://api.github.com/repos/zeit/next.js');
@@ -60,29 +57,7 @@ var MyPage = function (_React$Component) {
   (0, _createClass3.default)(MyPage, [{
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('div', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        }
-      }, _react2.default.createElement('h3', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17
-        }
-      }, '\u6DFB\u52A0\u4E8B\u9879'), _react2.default.createElement('div', {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 18
-        }
-      }, _react2.default.createElement(_TextField2.default, {
-        hintText: 'Message Field',
-        floatingLabelText: 'MultiLine and FloatingLabel',
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 19
-        }
-      })));
+      return _react2.default.createElement('div', null, _react2.default.createElement('h3', null, 'Momo'), _react2.default.createElement('p', null, 'Where are you?'));
     }
   }]);
 

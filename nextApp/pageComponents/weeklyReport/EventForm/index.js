@@ -125,8 +125,8 @@ export default class EventForm extends React.Component {
 
   submit() {
     this.props.onSubmit({
+      ...this.refs.form.getModel(),
       isNext: this.isNext,
-      ...this.refs.form.getModel()
     });
   }
 
@@ -149,6 +149,7 @@ export default class EventForm extends React.Component {
               name="expectDate"
               floatingLabelText="目标时间"
               hintText="事项的目标终止时间"
+              defaultDate={null}
             />
           </FormControllInline>
 
