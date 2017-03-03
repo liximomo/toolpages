@@ -1,3 +1,3 @@
 # modern-js
-a modern js starter project
+personal page collection
 
