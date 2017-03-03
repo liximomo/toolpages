@@ -40,6 +40,7 @@
     "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1",
+    "ucavatar": "^1.0.1",
     "uuid": "^3.0.1"
   }
 }

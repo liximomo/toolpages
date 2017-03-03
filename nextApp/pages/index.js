@@ -11,11 +11,24 @@ import TextField from 'material-ui/TextField';
 // }
 
 class MyPage extends React.Component {
+
+  componentDidMount() {
+    console.log('mount');
+  }
+
   render () {
     return (
-      <div>
+      <div style={{
+        textAlign: 'center',
+      }}>
         <h3>Momo</h3>
         <p>Where are you?</p>
+        <input style={{
+          border: 'none',
+          userSelect: 'all',
+          WebkitUserSelect: 'all',
+        }} id="sel" defaultValue="mf-1234" readOnly
+        />
       </div>
     );
   }

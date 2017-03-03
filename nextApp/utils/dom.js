@@ -6,11 +6,12 @@ function clearSelection() {
   }
 }
 
-export function copyElement(el) {
+export function copyElement(el, silence = true) {
   const body = document.body;
   let range;
   let sel;
   if (document.createRange && window.getSelection) {
+    // console.log('1');
     range = document.createRange();
     sel = window.getSelection();
     sel.removeAllRanges();
@@ -27,5 +28,7 @@ export function copyElement(el) {
     range.select();
   }
   document.execCommand("copy");
-  clearSelection();
+  if (silence) {
+    clearSelection();
+  }
 }
