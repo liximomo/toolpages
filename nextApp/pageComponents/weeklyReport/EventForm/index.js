@@ -98,11 +98,9 @@ const FormControllInline = (props) => (
   </div>
 );
 
-export default class EventForm extends React.Component {
+export default class EventForm extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
-
-    this.isNext = false;
 
     this.state = {
       more: false,
@@ -125,6 +123,7 @@ export default class EventForm extends React.Component {
 
   submit() {
     this.props.onSubmit({
+      id: this.props.id,
       ...this.refs.form.getModel(),
       isNext: this.isNext,
     });
@@ -135,6 +134,7 @@ export default class EventForm extends React.Component {
   }
 
   more() {
+    const props = this.props;
     return (
       <Paper style={{ padding: '2em 0' }} zDepth={1}>
         <p
@@ -149,7 +149,7 @@ export default class EventForm extends React.Component {
               name="expectDate"
               floatingLabelText="目标时间"
               hintText="事项的目标终止时间"
-              defaultDate={null}
+              defaultDate={props.expectDate}
             />
           </FormControllInline>
 
@@ -158,6 +158,7 @@ export default class EventForm extends React.Component {
               name="relation"
               floatingLabelText="第三方/协助方"
               hintText="事项相关协方（人，部门）"
+              defaultValue={props.relation}
             />
           </FormControllInline>
         </Row>
@@ -173,6 +174,7 @@ export default class EventForm extends React.Component {
               style={{
                 width: '100%'
               }}
+              defaultValue={props.descripe}
             />
           </FormControll>
         </Row>
@@ -187,6 +189,7 @@ export default class EventForm extends React.Component {
               style={{
                 width: '100%'
               }}
+              defaultValue={props.currentState}
             />
           </FormControll>
         </Row>
@@ -201,6 +204,7 @@ export default class EventForm extends React.Component {
               style={{
                 width: '100%'
               }}
+              defaultValue={props.nextState}
             />
           </FormControll>
         </Row>
@@ -215,6 +219,7 @@ export default class EventForm extends React.Component {
               style={{
                 width: '100%'
               }}
+              defaultValue={props.expectState}
             />
           </FormControll>
         </Row>
@@ -229,6 +234,7 @@ export default class EventForm extends React.Component {
               style={{
                 width: '100%'
               }}
+              defaultValue={props.obstacle}
             />
           </FormControll>
         </Row>
@@ -237,6 +243,9 @@ export default class EventForm extends React.Component {
   }
 
   render() {
+    this.isNext = this.props.isNext || false;
+
+    const props = this.props;
     return (
       <Formsy.Form
         ref="form"
@@ -255,6 +264,7 @@ export default class EventForm extends React.Component {
               thumbStyle={{
                 backgroundColor: '#ffcccc',
               }}
+              defaultToggled={props.isNext}
             />
           </FormControll>
         </Row>
@@ -266,6 +276,7 @@ export default class EventForm extends React.Component {
               required
               floatingLabelText="事项"
               hintText="事项简述"
+              defaultValue={props.event}
             />
           </FormControll>
         </Row>
@@ -275,7 +286,7 @@ export default class EventForm extends React.Component {
             <FormsySelect
               name="priority"
               floatingLabelText="优先级象限"
-              value={'p3'}
+              value={props.priority || 'p3'}
             >
               <MenuItem value={'p0'} primaryText="紧急且重要" />
               <MenuItem value={'p1'} primaryText="重要但不紧急" />
@@ -291,7 +302,7 @@ export default class EventForm extends React.Component {
               name="department"
               required
               floatingLabelText="责任部门"
-              defaultValue="新媒体"
+              defaultValue={props.department || '新媒体'}
             />
           </FormControllInline>
           <FormControllInline>
@@ -300,6 +311,7 @@ export default class EventForm extends React.Component {
               required
               floatingLabelText="责任人"
               hintText="事项负责人"
+              defaultValue={props.person}
             />
           </FormControllInline>
         </Row>

@@ -1,11 +1,9 @@
 import React from 'react';
+
 import injectGlobal from '../hoc/global';
 
 import uuid from 'uuid/v4';
-
-import { copyElement } from '../utils/dom';
-import WeekReport from '../pageComponents/weeklyReport/WeekReport';
-import EventForm from '../pageComponents/weeklyReport/EventForm';
+import mousetrap from 'mousetrap';
 
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
@@ -14,9 +12,18 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import ActionHelp from 'material-ui/svg-icons/action/help';
+
 import style from '../theme/normal';
 
+import { copyElement } from '../utils/dom';
+import WeekReport from '../pageComponents/weeklyReport/WeekReport';
+import EventForm from '../pageComponents/weeklyReport/EventForm';
+import MailSender from '../pageComponents/weeklyReport/MailSender';
+import fetch from '../helper/fetch';
+
 import '../components/tab_events';
+
+const SECRET_KEY_SEQUENCE = [].join.call('liximomo', ' ');
 
 const styles = {
   headStyle: {
@@ -118,20 +125,56 @@ const weekTableColumns = [{
   },
 }];
 
-class WeeklyReport extends React.Component {
+class WeeklyReport extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      showSender: false,
       snackBar: {
         open: false,
         message: null,
       },
       fabEnable: true,
       curView: view.INIT,
-      curWeek: [],
-      nextWeek: [],
+      events: [],
+      curEdit: null,
     };
-    
+    if (typeof window !== 'undefined') {
+      window.notify = this.notify;
+    } 
+  }
+
+  componentDidMount() {
+    mousetrap.bind(SECRET_KEY_SEQUENCE, (e) => {
+      this.setState({
+        showSender: true,
+      }, () => {
+       Mousetrap.unbind(SECRET_KEY_SEQUENCE);
+      });
+    });
+  }
+
+  bindBackKey = () => {
+    mousetrap.bind('esc', (e) => {
+      this.setState({
+        fabEnable: true,
+        curView: view.INIT,
+        curEdit: null,
+      });
+    });
+  }
+
+  editEvent = (id) => {
+    this.setState({
+      curView: view.ADD,
+      curEdit: this.state.events.find(item => item.id === id),
+    }, this.bindBackKey);
+  }
+
+  deleteEvent = (id) => {
+    this.setState({
+      events: this.state.events.filter(item => item.id !== id),
+    });
   }
 
   formValid = () => {
@@ -151,14 +194,23 @@ class WeeklyReport extends React.Component {
   }
 
   handleFormSubmit = (value) => {
-    const { isNext, ...eventEntry } = value;
-    const key = isNext ? 'nextWeek' : 'curWeek';
-    const events = this.state[key];
-    this.setState({
-      [key]: events.concat({
+    const { id } = value;
+    let events = this.state.events;
+    if (id) {
+      events = events.map(event => event.id === id ? value : event);
+    } else {
+      events = events.concat({
+        ...value,
         id: uuid(),
-        ...eventEntry,
-      }),
+      });
+    }
+    this.setState({
+      curView: view.INIT,
+      fabEnable: true,
+      curEdit: null,
+      events,
+    }, () => {
+      mousetrap.unbind('esc');
     });
   }
 
@@ -167,13 +219,9 @@ class WeeklyReport extends React.Component {
       this.setState({
         fabEnable: false,
         curView: view.ADD
-      });
+      }, this.bindBackKey);
     } else {
       this.submitForm();
-      this.setState({
-        fabEnable: true,
-        curView: view.INIT
-      });
     }
   }
 
@@ -203,18 +251,15 @@ class WeeklyReport extends React.Component {
     const {
       curWeek,
       nextWeek,
-    } = this.state;
+    } = this;
 
     return (
-      <div 
-        style={{
-          overflowX: 'scroll',
-          paddingBottom: '1.5em',
-        }}
+      <div
       >
         <WeekReport
           name="WeekReportRable"
-          title="本周"
+          onDelEvent={this.deleteEvent}
+          onEditEvent={this.editEvent}
           columns={weekTableColumns}
           curWeek={curWeek}
           nextWeek={nextWeek}
@@ -222,14 +267,27 @@ class WeeklyReport extends React.Component {
       </div>
     );
   }
+
   render() {
     const {
       curView,
       fabEnable,
-      curWeek,
-      nextWeek,
       snackBar,
+      showSender,
+      curEdit,
+      events,
     } = this.state;
+
+    this.curWeek = [];
+    this.nextWeek = [];
+
+    events.forEach(event => {
+      if (event.isNext) {
+        this.nextWeek.push(event);
+      } else {
+        this.curWeek.push(event);
+      }
+    });
 
     return (
       <div>
@@ -251,29 +309,37 @@ class WeeklyReport extends React.Component {
                 onValid={this.formValid}
                 onInValid={this.formInValid}
                 onSubmit={this.handleFormSubmit}
+                {...(curEdit || {})}
               />
           }
           <div
             style={{
               display: curView === view.INIT ? 'block' : 'none',
-              margin: '1.2em 0',
-              textAlign: 'right'
             }}
           >
-            <IconButton 
-              disableTouchRipple
-              tooltip="复制后直接在邮箱编辑框内执行粘贴操作即可将表格完整输出"
-              tooltipPosition="top-center"
+            <div
+              style={{
+                margin: '1.2em 0',
+                textAlign: 'right'
+              }}
             >
-              <ActionHelp color={this.context.muiTheme.palette.accent3Color} />
-            </IconButton>
-            <RaisedButton
-              secondary
-              label="复制"
-              onClick={this.copyTable}
-            />
+              <IconButton
+                disableTouchRipple
+                tooltip="复制后直接在邮箱编辑框内执行粘贴操作即可将表格完整输出"
+                tooltipPosition="top-center"
+              >
+                <ActionHelp color={this.context.muiTheme.palette.accent3Color} />
+              </IconButton>
+              <RaisedButton
+                secondary
+                label="复制"
+                onClick={this.copyTable}
+              />
+            </div>
+            {showSender ? <MailSender /> : null}
           </div>
         </div>
+
         <Snackbar
           open={snackBar.open}
           message={snackBar.message || 'null'}

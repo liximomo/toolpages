@@ -48,18 +48,20 @@ export default class WeekReport extends React.Component {
     super(props, context);
     this.curWeekTitle = `本周：${weekSpan()}`;
     this.nextWeekTitle = `下周：${weekSpan(1)}`;
-    
-    this.columnMaxLength = props.columns.map(col => col.style.minWidth * 16);
   }
   
   render() {
+    
     const {
-      title,
       columns,
       curWeek,
       nextWeek,
       name,
+      mode,
+      onDelEvent,
+      onEditEvent,
     } = this.props;
+
     return (
       <div>
         <div>
@@ -120,9 +122,39 @@ export default class WeekReport extends React.Component {
             </div>
           </div>
         </div>
-        <div name={name} >
-          <WeekTable widthMatrix={this.columnMaxLength} title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
-          <WeekTable widthMatrix={this.columnMaxLength} title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+        <div
+          style={{
+            overflowX: 'scroll',
+            paddingBottom: '1.5em',
+          }}
+        >
+          <WeekTable
+            onEditEvent={onEditEvent}
+            onDelEvent={onDelEvent}
+            editable title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
+          <WeekTable
+            onEditEvent={onEditEvent}
+            onDelEvent={onDelEvent}
+            editable title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+        </div>
+        <div
+          style={{
+            overflowX: 'scroll',
+            paddingBottom: '1.5em',
+            position: 'absolute',
+            left: '-1000px',
+            top: '-1000px',
+          }}
+          name={name}
+        >
+          <WeekTable
+            onEditEvent={onEditEvent}
+            onDelEvent={onDelEvent}
+            title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
+          <WeekTable
+            onEditEvent={onEditEvent}
+            onDelEvent={onDelEvent}
+            title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
         </div>
       </div>
     );

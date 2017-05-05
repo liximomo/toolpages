@@ -13,12 +13,16 @@ const Cell = (props) => (
       fontSize: props.fontSize || '12px',
     }}
   >
-    {`${props.content}`}
+    {props.children}
   </td>
 );
 
 export default (props) => {
-  const keys = [
+  let optKeys = [
+    'action',
+  ];
+
+  const requiredKeys = [
     'department', // 责任部门
     'event', // 涉及事项
     'priority', // 象限
@@ -31,12 +35,21 @@ export default (props) => {
     'currentState', // 当前状态
     'nextState', // 下一个目标
   ];
+
+  optKeys = optKeys.filter(key => props.hasOwnProperty(key));
+  const keys = optKeys.concat(requiredKeys);
+
   return (
     <tr>
       {keys.map((key, index) => {
         const cellContent = props[key] || ' ';
+        if (typeof cellContent === 'object') {
+          props.onRenderCell(index, cellContent.length);
+          return <Cell key={index}>{cellContent.content}</Cell>;
+        }
+
         props.onRenderCell(index, cellContent.length);
-        return <Cell key={index} content={cellContent} />;
+        return <Cell key={index}>{cellContent}</Cell>;
       })}
     </tr>
   );

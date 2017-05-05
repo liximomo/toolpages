@@ -11,7 +11,7 @@ const viewPath = path.join(appConfig.PROJECT_PATH, './views');
 const staticPath = path.join(appConfig.PROJECT_PATH, './assets');
 const nextDir = path.join(appConfig.PROJECT_PATH, './nextApp');
 
-const microFunction = require('./src/controller/micro-function');
+const mail = require('./src/controller/mail');
 
 function getLocalIpAddress() {
   const os = require('os');
@@ -34,6 +34,8 @@ const getAvaliableAdress = () => {
   return ['localhost'].concat(getLocalIpAddress());
 };
 
+const bodyParser = require('body-parser');
+
 const nextApp = next({ dev, dir: nextDir });
 const nextHandle = nextApp.getRequestHandler();
 
@@ -44,12 +46,18 @@ nextApp.prepare()
     app.set('view engine', 'pug');
     app.set('views', viewPath);
 
+    app.use(bodyParser.json()); // for parsing application/json
+    app.use(bodyParser.urlencoded({ extended: true })); 
+
     // app.use('/static', express.static(staticPath));
+
+    app.use('/service/mail', mail);
 
     app.use((req, res) => {
       const parsedUrl = url.parse(req.url, true);
       nextHandle(req, res, parsedUrl);
     });
+
 
     // app.use('/', (req, res, next) => {
     //   res.render('index');
