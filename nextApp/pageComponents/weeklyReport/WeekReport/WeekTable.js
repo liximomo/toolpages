@@ -48,20 +48,20 @@ const actionColDefinition = {
 export default class WeekTable extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
-    // this.widthMatrix = props.cols.map(col => col.style.minWidth * 16);
+    // this.props.widthMatrix = props.cols.map(col => col.style.minWidth * 16);
   }
 
   updateColumnLength = (index, length) => {
    const width =  Math.min(CELL_MAX_WIDTH, length * LENGTH_RATE + 40);
-    if (width > this.widthMatrix[index]) {
-      this.widthMatrix[index] = width;
+    if (width > this.props.widthMatrix[index]) {
+      this.props.widthMatrix[index] = width;
     }
   }
 
   componentDidMount(prevProps, prevState) {
     const tableElem = this.refs.table;
     const headers = tableElem.querySelectorAll('thead td');
-    this.widthMatrix.forEach((width, index) => {
+    this.props.widthMatrix.forEach((width, index) => {
       if (width < 0) return;
       headers[index].style.minWidth = `${width}px`;
     });
@@ -73,6 +73,7 @@ export default class WeekTable extends React.PureComponent {
       editable,
       onDelEvent,
       onEditEvent,
+      widthMatrix,
     } = props;
   
     let {
@@ -123,8 +124,6 @@ export default class WeekTable extends React.PureComponent {
         },
       }));
     }
-
-    this.widthMatrix = cols.map(col => col.style.minWidth * 16);
 
     return (
       <div>

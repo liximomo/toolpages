@@ -1,5 +1,8 @@
 import CopyToClipboard from 'react-copy-to-clipboard';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
+import IconDelete from 'material-ui/svg-icons/action/delete';
+import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 
 import WeekTable from './WeekTable';
 import { monday, friday }from '../../../utils/date';
@@ -17,6 +20,10 @@ function weekSpan(offset = 0) {
 }
 
 const demo = [{
+  action: {
+    length: 1,
+    content: ' ',
+  },
   id: '@demo',
   department: '示例', // 责任部门1
   event: '示例', // 涉及事项1
@@ -43,6 +50,14 @@ const style = {
   }
 };
 
+const actionColDefinition = {
+  name: 'action',
+  text: '操作',
+  style: {
+    minWidth: 2
+  },
+};
+
 export default class WeekReport extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -51,7 +66,6 @@ export default class WeekReport extends React.Component {
   }
   
   render() {
-    
     const {
       columns,
       curWeek,
@@ -61,6 +75,66 @@ export default class WeekReport extends React.Component {
       onDelEvent,
       onEditEvent,
     } = this.props;
+    const widthMatrix = columns.map(col => col.style.minWidth * 16);
+    
+    let editColumns, editCurWeek, editNextWeek;
+
+    const createEditAction = item => (
+      <IconButton 
+        style={{
+          padding: 0,
+          width: '16px',
+          height: '16px',
+          marginRight: '10px',
+        }}
+        disableTouchRipple
+        tooltip="编辑此条目"
+        tooltipPosition="top-center"
+        onClick={event => onEditEvent(item.id)}
+      ><IconEdit /></IconButton>
+    );
+    const createDelAction = item => (
+      <IconButton 
+        style={{
+          padding: 0,
+          width: '16px',
+          height: '16px',
+        }}
+        disableTouchRipple
+        tooltip="删除此条目"
+        tooltipPosition="top-center"
+        onClick={event => onDelEvent(item.id)}
+      ><IconDelete /></IconButton>
+    );
+
+    editColumns = [actionColDefinition].concat(columns);
+    const editWidthMatrix = editColumns.map(col => col.style.minWidth * 16);
+
+    editCurWeek = curWeek.map(item => ({
+      ...item,
+      action: {
+        content: (
+          <div>
+            {createEditAction(item)}
+            {createDelAction(item)}
+          </div>
+        ),
+        length: 1,
+      },
+    }));
+
+    editNextWeek = nextWeek.map(item => ({
+      ...item,
+      action: {
+        content: (
+          <div>
+            {createEditAction(item)}
+            {createDelAction(item)}
+          </div>
+        ),
+        length: 1,
+      },
+    }));
 
     return (
       <div>
@@ -131,30 +205,38 @@ export default class WeekReport extends React.Component {
           <WeekTable
             onEditEvent={onEditEvent}
             onDelEvent={onDelEvent}
-            editable title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
+            widthMatrix={editWidthMatrix}
+            title={this.curWeekTitle} cols={editColumns} data={editCurWeek.length ? editCurWeek : demo} />
           <WeekTable
             onEditEvent={onEditEvent}
             onDelEvent={onDelEvent}
-            editable title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+            widthMatrix={editWidthMatrix}
+            title={this.nextWeekTitle} cols={editColumns} data={editNextWeek} />
         </div>
         <div
           style={{
-            overflowX: 'scroll',
-            paddingBottom: '1.5em',
             position: 'absolute',
             left: '-1000px',
             top: '-1000px',
           }}
-          name={name}
         >
-          <WeekTable
-            onEditEvent={onEditEvent}
-            onDelEvent={onDelEvent}
-            title={this.curWeekTitle} cols={this.props.columns} data={curWeek.length ? curWeek : demo} />
-          <WeekTable
-            onEditEvent={onEditEvent}
-            onDelEvent={onDelEvent}
-            title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+          <div
+            style={{
+              overflowX: 'scroll',
+            }}
+            name={name}
+          >
+            <WeekTable
+              onEditEvent={onEditEvent}
+              onDelEvent={onDelEvent}
+              widthMatrix={widthMatrix}
+              title={this.curWeekTitle} cols={this.props.columns} data={curWeek} />
+            <WeekTable
+              onEditEvent={onEditEvent}
+              onDelEvent={onDelEvent}
+              widthMatrix={widthMatrix}
+              title={this.nextWeekTitle} cols={this.props.columns} data={nextWeek} />
+          </div>
         </div>
       </div>
     );

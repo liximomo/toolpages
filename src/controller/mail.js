@@ -44,7 +44,6 @@ function send(req, res) {
     to,
     cc,
   } = req.body;
-  console.log(req.body);
 
   const transporter = nodemailer.createTransport({
     service: 'QQex',
