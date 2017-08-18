@@ -44,11 +44,9 @@ export default (props) => {
       {keys.map((key, index) => {
         const cellContent = props[key] || ' ';
         if (typeof cellContent === 'object') {
-          console.log(index, cellContent.length);
           props.onRenderCell(index, cellContent.length);
           return <Cell key={index}>{cellContent.content}</Cell>;
         }
-        console.log(index, cellContent.length);
         props.onRenderCell(index, cellContent.length);
         return <Cell key={index}>{cellContent}</Cell>;
       })}

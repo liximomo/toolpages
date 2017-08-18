@@ -37,14 +37,6 @@ const colDefinition = (columns) => {
   );
 }
 
-const actionColDefinition = {
-  name: 'action',
-  text: '操作',
-  style: {
-    minWidth: 2
-  },
-};
-
 export default class WeekTable extends React.PureComponent {
   constructor(props, context) {
     super(props, context);

@@ -49,7 +49,7 @@ nextApp.prepare()
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); 
 
-    // app.use('/static', express.static(staticPath));
+    app.use('/static', express.static(staticPath));
 
     app.use('/service/mail', mail);
 

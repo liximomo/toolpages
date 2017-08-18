@@ -11,9 +11,9 @@ import { monday, friday }from '../../../utils/date';
 import fetch, { params } from '../../../helper/fetch';
 
 const mailConfig = {
-  to: 'lanyi-tech-list@mufengcm.com',
-  cc: 'chenbin@mufengcm.com',
-  // to: 'xuyanghong@mufengcm.com',
+  to: 'lanyi-tech-list@lanyife.com',
+  cc: 'chenbin@lanyife.com',
+  // to: 'xuyanghong@lanyife.com',
   // user
   // pass
   // content
@@ -183,7 +183,7 @@ export default class MailSender extends React.PureComponent {
                 name="user"
                 required
                 floatingLabelText="邮箱"
-                hintText="example@mufengcm.com"
+                hintText="example@lanyife.com"
                 defaultValue={userInfo.user}
                 style={styles.input}
               />

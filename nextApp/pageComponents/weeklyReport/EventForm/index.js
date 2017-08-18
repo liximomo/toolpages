@@ -136,7 +136,7 @@ export default class EventForm extends React.PureComponent {
   more() {
     const props = this.props;
     return (
-      <Paper style={{ padding: '2em 0' }} zDepth={1}>
+      <Paper style={{ padding: '2em 0', display: this.state.more ? 'block' : 'none' }} zDepth={1}>
         <p
           style={{
             margin: '-0.8em 1.4em 0',
@@ -316,18 +316,19 @@ export default class EventForm extends React.PureComponent {
           </FormControllInline>
         </Row>
 
-        { !this.state.more
+        {!this.state.more
           ? <FlatButton
-              style={{
-                left: -8,
-                top: 10
-              }}
-              label="更多"
-              secondary={true}
-              onClick={this.showMore}
-            />
-          : this.more()
+            style={{
+              left: -8,
+              top: 10
+            }}
+            label="更多"
+            secondary={true}
+            onClick={this.showMore}
+          />
+          : null
         }
+        {this.more()}
       </Formsy.Form>
     )
   }

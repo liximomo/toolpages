@@ -1,5 +1,6 @@
 import React from 'react';
 import injectGlobal from '../hoc/global';
+import Link from 'next/link'
 
 import TextField from 'material-ui/TextField';
 
@@ -12,23 +13,20 @@ import TextField from 'material-ui/TextField';
 
 class MyPage extends React.Component {
 
-  componentDidMount() {
-    console.log('mount');
-  }
-
   render () {
     return (
-      <div style={{
-        textAlign: 'center',
-      }}>
-        <h3>Momo</h3>
-        <p>Where are you?</p>
-        <input style={{
-          border: 'none',
-          userSelect: 'all',
-          WebkitUserSelect: 'all',
-        }} id="sel" defaultValue="mf-1234" readOnly
-        />
+      <div style={{ maxWidth: '736px', margin: '0 auto' }}>
+        <h2>Momo</h2>
+        <section>
+          <header><h3>APP</h3></header>
+          <section>
+            <ul style={{marginTop: '20px'}}>
+              <li>
+                <Link prefetch href="/weeklyReport"><a>周报生成器</a></Link>
+              </li>
+            </ul>
+          </section>
+        </section>
       </div>
     );
   }

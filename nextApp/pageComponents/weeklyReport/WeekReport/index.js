@@ -168,8 +168,8 @@ export default class WeekReport extends React.Component {
                 marginBottom: 12,
               }}
             >
-              <span style={{ marginRight: 10 }} >收件人：lanyi-tech-list@mufengcm.com</span>
-              <CopyToClipboard text={'lanyi-tech-list@mufengcm.com'}>
+              <span style={{ marginRight: 10 }} >收件人：lanyi-tech-list@lanyife.com</span>
+              <CopyToClipboard text={'lanyi-tech-list@lanyife.com'}>
                 <RaisedButton
                   labelStyle={style.btnLabel}
                   style={{
@@ -182,8 +182,8 @@ export default class WeekReport extends React.Component {
             </div>
             
             <div>
-              <span style={{ marginRight: 10 }} >抄送：chenbin@mufengcm.com</span>
-              <CopyToClipboard text={'chenbin@mufengcm.com'}>
+              <span style={{ marginRight: 10 }} >抄送：chenbin@lanyife.com</span>
+              <CopyToClipboard text={'chenbin@lanyife.com'}>
                 <RaisedButton
                   labelStyle={style.btnLabel}
                   style={{
