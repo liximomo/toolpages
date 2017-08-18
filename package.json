@@ -4,7 +4,7 @@
   "scripts": {
     "prestart": "rm -rf ./dist",
     "start": "NODE_ENV=development nodemon --watch src --watch app.js ./app.js",
-    "serve": "next build nextApp && NODE_ENV=production node ./app.js"
+    "build": "next build nextApp"
   },
   "description": "bigbang on web",
   "main": "index.js",
